@@ -32,7 +32,8 @@ class SignupScreen extends StatelessWidget {
           Stack(
             children: [
               CircleAvatar(
-                backgroundImage: NetworkImage('https://www.daily-sun.com/assets/news_images/2021/09/25/Nikli.jpg'),
+                backgroundImage: NetworkImage(
+                    'https://www.daily-sun.com/assets/news_images/2021/09/25/Nikli.jpg'),
                 backgroundColor: Colors.black,
                 radius: 64,
               ),
@@ -40,7 +41,7 @@ class SignupScreen extends StatelessWidget {
                 bottom: -10,
                 left: 80,
                 child: IconButton(
-                  onPressed: null,
+                  onPressed: () => authController.pickImage(),
                   icon: Icon(Icons.add_a_photo),
                 ),
               ),
@@ -78,7 +79,12 @@ class SignupScreen extends StatelessWidget {
           ),
           SizedBox(height: 30),
           InkWell(
-            onTap: () {},
+            onTap: () => authController.userRegistration(
+              username: _usernameController.text,
+              email: _emailController.text,
+              password: _passwordController.text,
+              image: authController.profilePhoto,
+            ),
             child: Container(
               width: MediaQuery.of(context).size.width - 40,
               height: 50,
@@ -88,7 +94,7 @@ class SignupScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "Log in",
+                  "Sign up",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -102,13 +108,13 @@ class SignupScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Don\'t have an account?',
+                'Already have an account?',
                 style: TextStyle(fontSize: 15),
               ),
               TextButton(
                 onPressed: null,
                 child: Text(
-                  "Register",
+                  "Login",
                   style: TextStyle(
                     fontSize: 15,
                     color: buttonColor,

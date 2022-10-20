@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
-class loginScreen extends StatelessWidget {
-  loginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  LoginScreen({Key? key}) : super(key: key);
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();

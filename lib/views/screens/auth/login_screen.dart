@@ -77,7 +77,7 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
               ),
               TextButton(
-                onPressed: () => Get.to(SignupScreen()),
+                onPressed: () => Get.to(() => SignupScreen()),
                 child: Text(
                   "Register",
                   style: TextStyle(

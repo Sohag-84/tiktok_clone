@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/views/screens/auth/signup_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -18,9 +20,7 @@ class LoginScreen extends StatelessWidget {
           Text(
             "TikTok",
             style: TextStyle(
-                color: buttonColor,
-                fontSize: 35,
-                fontWeight: FontWeight.w900),
+                color: buttonColor, fontSize: 35, fontWeight: FontWeight.w900),
           ),
           Text(
             "Login",
@@ -48,7 +48,8 @@ class LoginScreen extends StatelessWidget {
           ),
           SizedBox(height: 30),
           InkWell(
-            onTap: () {},
+            onTap: () => authController.userLogin(
+                _emailController.text, _passwordController.text),
             child: Container(
               width: MediaQuery.of(context).size.width - 40,
               height: 50,
@@ -76,15 +77,16 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
               ),
               TextButton(
-                  onPressed: null,
-                  child: Text(
-                    "Register",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: buttonColor,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ))
+                onPressed: () => Get.to(SignupScreen()),
+                child: Text(
+                  "Register",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: buttonColor,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
             ],
           )
         ],

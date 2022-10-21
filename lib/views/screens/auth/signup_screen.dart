@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/views/screens/auth/login_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -112,7 +114,7 @@ class SignupScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
               ),
               TextButton(
-                onPressed: null,
+                onPressed: () => Get.to(LoginScreen()),
                 child: Text(
                   "Login",
                   style: TextStyle(

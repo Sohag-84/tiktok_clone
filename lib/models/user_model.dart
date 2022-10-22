@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class UserModel {
   String username;
@@ -15,10 +14,10 @@ class UserModel {
   });
 
   Map<String, dynamic> toJson() => {
-        'Username': username,
-        'Profile-picture': profilePic,
-        'Email': email,
-        'Uid': uid,
+        'username': username,
+        'profile_photo': profilePic,
+        'pmail': email,
+        'uid': uid,
       };
   //retrieve data from firebase
   static UserModel fromJson(DocumentSnapshot snapshot) {

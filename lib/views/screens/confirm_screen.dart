@@ -3,6 +3,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tiktok_clone/controllers/upload_video_controller.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 import 'package:video_player/video_player.dart';
 
@@ -21,6 +23,9 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
   final _songNameController = TextEditingController();
   final _captionController = TextEditingController();
   late VideoPlayerController controller;
+
+  UploadVideoController uploadVideoController =
+      Get.put(UploadVideoController());
 
   @override
   void initState() {
@@ -80,7 +85,11 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => uploadVideoController.uploadVideo(
+                      songName: _songNameController.text,
+                      caption: _captionController.text,
+                      videoPath: widget.videoPath,
+                    ),
                     child: Text(
                       "Share!",
                       style: TextStyle(

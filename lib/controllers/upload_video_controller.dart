@@ -81,6 +81,7 @@ class UploadVideoController extends GetxController {
       Get.back();
     } catch (e) {
       Get.snackbar('Error uploading video', e.toString());
+      Get.back();
     }
   }
 }

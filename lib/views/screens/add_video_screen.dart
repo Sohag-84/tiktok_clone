@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants.dart';
@@ -28,12 +29,12 @@ class AddVideoScreen extends StatelessWidget {
           SimpleDialogOption(
             onPressed: () => pickVideo(ImageSource.gallery),
             child: Row(
-              children: const [
+              children: [
                 Icon(Icons.image),
-                SizedBox(width: 3),
+                SizedBox(width: 3.w),
                 Text(
                   'Gallery',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20.sp),
                 )
               ],
             ),
@@ -43,10 +44,10 @@ class AddVideoScreen extends StatelessWidget {
             child: Row(
               children: [
                 Icon(Icons.camera_alt),
-                SizedBox(width: 3),
+                SizedBox(width: 3.w),
                 Text(
                   'Camera',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20.sp),
                 )
               ],
             ),
@@ -56,11 +57,11 @@ class AddVideoScreen extends StatelessWidget {
             child: Row(
               children: [
                 Icon(Icons.cancel),
-                SizedBox(width: 3),
+                SizedBox(width: 3.w),
                 Text(
                   'Cancel',
-                  style: TextStyle(fontSize: 20),
-                )
+                  style: TextStyle(fontSize: 20.sp),
+                ),
               ],
             ),
           ),
@@ -76,18 +77,22 @@ class AddVideoScreen extends StatelessWidget {
         child: InkWell(
           onTap: () => showOptionDialog(context),
           child: Container(
-            height: 50,
-            width: 190,
+            height: 50.h,
+            width: 190.w,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5), color: buttonColor),
+              borderRadius: BorderRadius.circular(5.r),
+              color: buttonColor,
+            ),
             child: Center(
-                child: Text(
-              "Add Video",
-              style: TextStyle(
-                  fontSize: 20,
+              child: Text(
+                "Add Video",
+                style: TextStyle(
+                  fontSize: 20.sp,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            )),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
         ),
       ),

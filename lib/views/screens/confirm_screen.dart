@@ -44,6 +44,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
     super.dispose();
     _songNameController.dispose();
     _captionController.dispose();
+    controller.dispose();
   }
 
   @override

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/widgets/custom_icon.dart';
 
@@ -28,13 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
             pageIndex = value;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 30),
+            icon: Icon(Icons.home, size: 30.h),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 30),
+            icon: Icon(Icons.search, size: 30.h),
             label: "Search",
           ),
           BottomNavigationBarItem(
@@ -42,11 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Add",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message, size: 30),
+            icon: Icon(Icons.message, size: 30.h),
             label: "Message",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, size: 30),
+            icon: Icon(Icons.person, size: 30.h),
             label: "Profile",
           ),
         ],

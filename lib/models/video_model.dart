@@ -51,13 +51,13 @@ class VideoModel {
       uid: snap['uid'],
       id: snap['id'],
       likes: snap['likes'],
-      commentCount: snap['commentCount'],
-      shareCount: snap['shareCount'],
-      songName: snap['songName'],
+      commentCount: snap['comment_count'],
+      shareCount: snap['share_count'],
+      songName: snap['song_name'],
       caption: snap['caption'],
-      videoUrl: snap['videoUrl'],
-      thumbnailUrl: snap['thumbnailUrl'],
-      profilePhoto: snap['profilePhoto'],
+      videoUrl: snap['video_url'],
+      thumbnailUrl: snap['thumbnail'],
+      profilePhoto: snap['profile_photo'],
     );
   }
 }

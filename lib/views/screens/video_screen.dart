@@ -2,11 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:tiktok_clone/controllers/video_controller.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 
 class VideoScrenn extends StatelessWidget {
-  const VideoScrenn({Key? key}) : super(key: key);
+  VideoScrenn({Key? key}) : super(key: key);
+
+  final VideoController videoController = Get.put(VideoController());
 
   buildProfile(String profilePhoto) {
     return SizedBox(
@@ -28,7 +32,7 @@ class VideoScrenn extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25.r),
                 child: Image(
                   image: NetworkImage(profilePhoto),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
@@ -61,7 +65,7 @@ class VideoScrenn extends StatelessWidget {
               borderRadius: BorderRadius.circular(25.r),
               child: Image(
                 image: NetworkImage(profilePhoto),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),
@@ -73,15 +77,16 @@ class VideoScrenn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: PageView.builder(
-        itemCount: 5,
-        controller: PageController(initialPage: 2, viewportFraction: 1),
+    return Scaffold(body: Obx(() {
+      return PageView.builder(
+        itemCount: videoController.videoList.length,
+        controller: PageController(initialPage: 0, viewportFraction: 1),
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
+          final data = videoController.videoList[index];
           return Stack(
             children: [
-              VideoPlayerItem(videoUrl: 'videoUrl'),
+              VideoPlayerItem(videoUrl: data.videoUrl),
               Column(
                 children: [
                   SizedBox(height: 100.h),
@@ -99,7 +104,7 @@ class VideoScrenn extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Username",
+                                  data.username,
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: Colors.white,
@@ -107,7 +112,7 @@ class VideoScrenn extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "Caption",
+                                  data.caption,
                                   style: TextStyle(
                                     fontSize: 15.sp,
                                     color: Colors.white,
@@ -121,7 +126,7 @@ class VideoScrenn extends StatelessWidget {
                                       color: Colors.white,
                                     ),
                                     Text(
-                                      "song name",
+                                      data.songName,
                                       style: TextStyle(
                                         fontSize: 15.sp,
                                         color: Colors.white,
@@ -140,7 +145,7 @@ class VideoScrenn extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              buildProfile('profilePhoto'),
+                              buildProfile(data.profilePhoto),
                               Column(
                                 children: [
                                   IconButton(
@@ -153,7 +158,7 @@ class VideoScrenn extends StatelessWidget {
                                   ),
                                   SizedBox(height: 7.h),
                                   Text(
-                                    '3,234',
+                                    data.likes.length.toString(),
                                     style: TextStyle(
                                       fontSize: 20.sp,
                                       color: Colors.white,
@@ -173,7 +178,7 @@ class VideoScrenn extends StatelessWidget {
                                   ),
                                   SizedBox(height: 7.h),
                                   Text(
-                                    '234',
+                                    data.commentCount.toString(),
                                     style: TextStyle(
                                       fontSize: 20.sp,
                                       color: Colors.white,
@@ -193,7 +198,7 @@ class VideoScrenn extends StatelessWidget {
                                   ),
                                   SizedBox(height: 7.h),
                                   Text(
-                                    '34',
+                                    data.shareCount.toString(),
                                     style: TextStyle(
                                       fontSize: 20.sp,
                                       color: Colors.white,
@@ -202,7 +207,7 @@ class VideoScrenn extends StatelessWidget {
                                 ],
                               ),
                               CircleAnimation(
-                                child: buildMusicAlbum('profilePhoto'),
+                                child: buildMusicAlbum(data.profilePhoto),
                               ),
                             ],
                           ),
@@ -215,7 +220,7 @@ class VideoScrenn extends StatelessWidget {
             ],
           );
         },
-      ),
-    );
+      );
+    }));
   }
 }

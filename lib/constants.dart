@@ -7,7 +7,7 @@ import 'package:tiktok_clone/views/screens/add_video_screen.dart';
 import 'package:tiktok_clone/views/screens/video_screen.dart';
 
 //Pages
-const pages = [
+List pages = [
   VideoScrenn(),
   Center(child: Text('Search Screen')),
   AddVideoScreen(),

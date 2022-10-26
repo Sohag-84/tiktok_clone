@@ -16,7 +16,7 @@ class UserModel {
   Map<String, dynamic> toJson() => {
         'username': username,
         'profile_photo': profilePic,
-        'pmail': email,
+        'email': email,
         'uid': uid,
       };
   //retrieve data from firebase
@@ -24,7 +24,7 @@ class UserModel {
     var snap = snapshot.data() as Map<String, dynamic>;
     return UserModel(
       username: snap['username'],
-      profilePic: snap['profilePic'],
+      profilePic: snap['profile_photo'],
       email: snap['email'],
       uid: snap['uid'],
     );

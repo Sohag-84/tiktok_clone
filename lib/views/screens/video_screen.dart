@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/video_controller.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
@@ -149,11 +150,15 @@ class VideoScrenn extends StatelessWidget {
                               Column(
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () =>
+                                        videoController.likeVideo(data.id),
                                     icon: Icon(
                                       Icons.favorite,
                                       size: 40.h,
-                                      color: Colors.white,
+                                      color: data.likes
+                                              .contains(authController.user.uid)
+                                          ? Colors.red
+                                          : Colors.white,
                                     ),
                                   ),
                                   SizedBox(height: 7.h),

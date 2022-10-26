@@ -25,4 +25,25 @@ class VideoController extends GetxController {
       ),
     );
   }
+
+  //for like video
+  likeVideo(String id) async {
+    DocumentSnapshot doc = await firestore.collection('videos').doc(id).get();
+    var uid = authController.user.uid;
+
+    if ((doc.data()! as dynamic)['likes'].contains(uid)) {
+      //that means user already like this video
+      await firestore.collection('videos').doc(id).update(
+        {
+          'likes': FieldValue.arrayRemove([uid]),
+        },
+      );
+    } else {
+      await firestore.collection('videos').doc(id).update(
+        {
+          'likes': FieldValue.arrayUnion([uid]),
+        },
+      );
+    }
+  }
 }

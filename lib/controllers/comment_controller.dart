@@ -52,6 +52,11 @@ class CommentController extends GetxController {
             .set(
               commentModel.toJson(),
             );
+        //retrieve comment from firebase
+        DocumentSnapshot documentSnapshot = await firestore.collection('videos').doc(_postId).get();
+        await firestore.collection('videos').doc(_postId).update({
+          'comment_count': (documentSnapshot.data() as dynamic)['comment_count']+1,
+        },);
       }
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());

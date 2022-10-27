@@ -8,7 +8,7 @@ import 'package:tiktok_clone/views/screens/video_screen.dart';
 
 //Pages
 List pages = [
-  VideoScrenn(),
+  VideoScreen(),
   Center(child: Text('Search Screen')),
   AddVideoScreen(),
   Center(child: Text("Message Screen")),

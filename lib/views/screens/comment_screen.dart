@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/controllers/comment_controller.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class CommentScreen extends StatelessWidget {
   final String id;
@@ -28,17 +29,18 @@ class CommentScreen extends StatelessWidget {
               Expanded(
                 child: Obx(() {
                   return ListView.builder(
-                    itemCount: 1,
+                    itemCount: commentController.comments.length,
                     itemBuilder: (context, index) {
+                      final data = commentController.comments[index];
                       return ListTile(
                         leading: CircleAvatar(
                           backgroundColor: Colors.black,
-                          backgroundImage: NetworkImage('profile photo'),
+                          backgroundImage: NetworkImage(data.profilePhoto),
                         ),
                         title: Row(
                           children: [
                             Text(
-                              "username",
+                              data.username,
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 color: Colors.red,
@@ -47,7 +49,7 @@ class CommentScreen extends StatelessWidget {
                             ),
                             SizedBox(width: 5.w),
                             Text(
-                              'comment description',
+                              data.comment,
                               style: TextStyle(
                                 fontSize: 17.sp,
                                 color: Colors.white,
@@ -59,7 +61,7 @@ class CommentScreen extends StatelessWidget {
                         subtitle: Row(
                           children: [
                             Text(
-                              "date",
+                              timeago.format(data.datePublished.toDate(),),
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 color: Colors.white,
@@ -67,7 +69,7 @@ class CommentScreen extends StatelessWidget {
                             ),
                             SizedBox(width: 10.h),
                             Text(
-                              "20 likes",
+                              '${data.likes.length.toString()} likes',
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 color: Colors.white,

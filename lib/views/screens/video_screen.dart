@@ -9,8 +9,8 @@ import 'package:tiktok_clone/views/screens/comment_screen.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 
-class VideoScrenn extends StatelessWidget {
-  VideoScrenn({Key? key}) : super(key: key);
+class VideoScreen extends StatelessWidget {
+  VideoScreen({Key? key}) : super(key: key);
 
   final VideoController videoController = Get.put(VideoController());
 

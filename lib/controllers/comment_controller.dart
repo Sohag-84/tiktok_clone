@@ -15,7 +15,22 @@ class CommentController extends GetxController {
     getComment();
   }
 
-  getComment() async {}
+  getComment() async {
+    _comments.bindStream(
+      firestore
+          .collection('videos')
+          .doc(_postId)
+          .collection('comment')
+          .snapshots()
+          .map((QuerySnapshot querySnapshot) {
+        List<CommentModel> returnValue = [];
+        for (var element in querySnapshot.docs) {
+          returnValue.add(CommentModel.fromJson(element));
+        }
+        return returnValue;
+      }),
+    );
+  }
 
   postComment(String commentText) async {
     try {
@@ -53,10 +68,14 @@ class CommentController extends GetxController {
               commentModel.toJson(),
             );
         //retrieve comment from firebase
-        DocumentSnapshot documentSnapshot = await firestore.collection('videos').doc(_postId).get();
-        await firestore.collection('videos').doc(_postId).update({
-          'comment_count': (documentSnapshot.data() as dynamic)['comment_count']+1,
-        },);
+        DocumentSnapshot documentSnapshot =
+            await firestore.collection('videos').doc(_postId).get();
+        await firestore.collection('videos').doc(_postId).update(
+          {
+            'comment_count':
+                (documentSnapshot.data() as dynamic)['comment_count'] + 1,
+          },
+        );
       }
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());

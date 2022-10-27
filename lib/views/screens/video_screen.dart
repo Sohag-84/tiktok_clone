@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/video_controller.dart';
+import 'package:tiktok_clone/views/screens/comment_screen.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 
@@ -174,7 +175,13 @@ class VideoScrenn extends StatelessWidget {
                               Column(
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            CommentScreen(id: data.id),
+                                      ),
+                                    ),
                                     icon: Icon(
                                       Icons.comment,
                                       size: 40.h,

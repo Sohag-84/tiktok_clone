@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controllers/comment_controller.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -61,7 +62,9 @@ class CommentScreen extends StatelessWidget {
                         subtitle: Row(
                           children: [
                             Text(
-                              timeago.format(data.datePublished.toDate(),),
+                              timeago.format(
+                                data.datePublished.toDate(),
+                              ),
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 color: Colors.white,
@@ -78,10 +81,12 @@ class CommentScreen extends StatelessWidget {
                           ],
                         ),
                         trailing: IconButton(
-                          onPressed: null,
+                          onPressed: () => commentController.likeComment(data.id),
                           icon: Icon(
                             Icons.favorite,
-                            color: Colors.red,
+                            color: data.likes.contains(authController.user.uid)
+                                ? Colors.red
+                                : Colors.white,
                           ),
                         ),
                       );
@@ -110,8 +115,10 @@ class CommentScreen extends StatelessWidget {
                   ),
                 ),
                 trailing: TextButton(
-                  onPressed: () =>
-                      commentController.postComment(_commentController.text),
+                  onPressed: () {
+                      commentController.postComment(_commentController.text);
+                      _commentController.clear();
+                  },
                   child: Text(
                     "Send",
                     style: TextStyle(

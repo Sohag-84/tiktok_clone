@@ -43,11 +43,11 @@ class CommentController extends GetxController {
         var allDocs = await firestore
             .collection('videos')
             .doc(_postId)
-            .collection("comments")
+            .collection("comment")
             .get();
 
         int len = allDocs.docs.length;
-        var userData = userDoc.data()! as Map<String, dynamic>;
+        var userData = userDoc.data()! as dynamic;
 
         CommentModel commentModel = CommentModel(
           username: userData['username'],
@@ -73,12 +73,48 @@ class CommentController extends GetxController {
         await firestore.collection('videos').doc(_postId).update(
           {
             'comment_count':
-                (documentSnapshot.data() as dynamic)['comment_count'] + 1,
+                (documentSnapshot.data()! as dynamic)['comment_count'] + 1,
           },
         );
       }
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());
+    }
+  }
+
+  //for comment like
+  likeComment(String id) async {
+    DocumentSnapshot doc = await firestore
+        .collection('videos')
+        .doc(_postId)
+        .collection('comment')
+        .doc(id)
+        .get();
+    var uid = authController.user.uid;
+
+    if ((doc.data()! as dynamic)['Likes'].contains(uid)) {
+      //that means user already like this video
+      await firestore
+          .collection('videos')
+          .doc(_postId)
+          .collection('comment')
+          .doc(id)
+          .update(
+        {
+          'Likes': FieldValue.arrayRemove([uid]),
+        },
+      );
+    } else {
+      await firestore
+          .collection('videos')
+          .doc(_postId)
+          .collection('comment')
+          .doc(id)
+          .update(
+        {
+          'Likes': FieldValue.arrayUnion([uid]),
+        },
+      );
     }
   }
 }

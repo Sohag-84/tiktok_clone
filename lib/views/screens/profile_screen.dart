@@ -142,6 +142,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       if(widget.uid == authController.user.uid){
                         AuthController().signOut();
                       }
+                      else{
+                        controller.followUser();
+                      }
                     },
                     child: Container(
                       width: 140.w,

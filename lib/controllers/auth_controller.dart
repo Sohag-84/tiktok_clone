@@ -97,13 +97,18 @@ class AuthController extends GetxController {
       if (email.isNotEmpty && password.isNotEmpty) {
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
-        //Fluttertoast.showToast(msg: 'login successful');
-        print("login");
+        Fluttertoast.showToast(msg: 'login successful');
       } else {
         Get.snackbar('Login error', 'Please enter all the fields');
       }
     } catch (e) {
       Get.snackbar('Login error', e.toString());
     }
+  }
+
+  //for logout
+  void signOut() async {
+    await firebaseAuth.signOut();
+    Fluttertoast.showToast(msg: "Log Out");
   }
 }
